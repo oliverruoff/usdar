@@ -42,5 +42,5 @@ def get_distance():
     return distance
 
 
-print('Distance:', get_distance())
+print('Distance:', get_distance(), 'cm')
 GPIO.cleanup()
