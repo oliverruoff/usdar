@@ -1,3 +1,5 @@
+"""Holds functionality to move the stepper motor.
+"""
 import RPi.GPIO as GPIO
 import time
 
