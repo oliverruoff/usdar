@@ -2,13 +2,13 @@ import RPi.GPIO as GPIO
 import time
 
 GPIO.setmode(GPIO.BCM)
-stepper_pins = [6, 13, 19, 26]
+STEPPER_PINS = [6, 13, 19, 26]
 
-for pin in stepper_pins:
+for pin in STEPPER_PINS:
     GPIO.setup(pin, GPIO.OUT)
     GPIO.output(pin, 0)
 
-halfstep_seq = [
+HALFSTEP_SEQ = [
     [1, 0, 0, 0],
     [1, 1, 0, 0],
     [0, 1, 0, 0],
@@ -21,11 +21,19 @@ halfstep_seq = [
 
 
 def run_stepper(steps, forward=True):
+    """Runs the stepper motor for the given number of steps.
+
+    Arguments:
+        steps {int} -- Number of steps the motor will do.
+
+    Keyword Arguments:
+        forward {boolean} -- Tells if the motor runs forward or backward. (default: {True})
+    """
     halfstep_range = range(8) if forward else list(reversed(range(8)))
     for i in range(steps):
         for halfstep in halfstep_range:
             for pin in range(4):
-                GPIO.output(stepper_pins[pin], halfstep_seq[halfstep][pin])
+                GPIO.output(STEPPER_PINS[pin], HALFSTEP_SEQ[halfstep][pin])
             time.sleep(0.001)
 
 
