@@ -15,7 +15,7 @@ def scan_360():
 
 def scan_range(degree, clockwise=True):
     env_map = []
-    for angle in range(degree)
+    for angle in range(degree):
         distance = us.get_distance()
         env_map.append(get_coord(angle, distance))
         st.turn_stepper_angle(1, clockwise)
