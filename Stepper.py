@@ -5,7 +5,7 @@ import RPi.GPIO as GPIO
 import time
 
 GPIO.setmode(GPIO.BCM)
-STEPPER_PINS = [6, 13, 19, 26]
+STEPPER_PINS = [21, 20, 16, 12]
 
 for pin in STEPPER_PINS:
     GPIO.setup(pin, GPIO.OUT)
@@ -23,24 +23,23 @@ HALFSTEP_SEQ = [
 ]
 
 
-def run_stepper(steps, forward=True):
+def run_stepper(steps, clockwise=True):
     """Runs the stepper motor for the given number of steps.
-
+       Note, that "clockwise" depends on pin setup.
+       512 steps == 1 round.
     Arguments:
         steps {int} -- Number of steps the motor will do.
 
     Keyword Arguments:
-        forward {boolean} -- Tells if the motor runs forward or backward. (default: {True})
+        clockwise {boolean} -- Tells if the motor runs clockwise or counter clockwise. (default: {True})
     """
-    halfstep_range = range(8) if forward else list(reversed(range(8)))
+    halfstep_range = range(8) if not clockwise else list(reversed(range(8)))
     for i in range(steps):
         for halfstep in halfstep_range:
             for pin in range(4):
                 GPIO.output(STEPPER_PINS[pin], HALFSTEP_SEQ[halfstep][pin])
             time.sleep(0.001)
 
+def turn_stepper_angle(angle_in_degree, clockwise=True):
+    run_stepper(int(512/360 * angle_in_degree), clockwise)
 
-run_stepper(512)  # 512 steps == 1 round -> forward
-run_stepper(512, False)  # -> backward
-
-GPIO.cleanup()

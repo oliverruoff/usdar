@@ -40,7 +40,3 @@ def get_distance():
     distance = (time_elapsed * 34300) / 2
 
     return distance
-
-
-print('Distance:', get_distance(), 'cm')
-GPIO.cleanup()
