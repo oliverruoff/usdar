@@ -5,20 +5,25 @@ import Stepper as st
 import UltraSonic as us
 
 def get_coord(angle, distance):
+    #print('>>>sin(', angle, '=', math.sin(angle), '*', distance, '=',math.sin(angle)*distance )
+    #print('>>>cos(', angle, '=', math.cos(angle), '*', distance, '=',math.cos(angle)*distance )
     return math.sin(angle)*distance, math.cos(angle)*distance
 
-def scan_360():
-    env_map = scan_range(360, True)
-    # move stepper back to initial position
-    st.turn_stepper_angle(360, False)
-    return env_map
 
-def scan_range(degree, clockwise=True):
+def scan_360():
     env_map = []
-    for angle in range(degree):
-        print('Angle:', angle)
-        distance = us.get_distance()
-        print('Distance:', distance)
-        env_map.append(get_coord(angle, distance))
-        st.turn_stepper_angle(1, clockwise)
+    stepper_turn_multiplier = 2
+    for i in range (256):
+        angle = 360/512*i*stepper_turn_multiplier
+        distance = us.get_reliable_distance()
+        #print('____________________')
+        #print('Angle   :', angle)
+        #print('Distance:', distance)
+        #print('X       :', get_coord(angle, distance)[0])
+        #print('Y       :', get_coord(angle, distance)[1])
+        #print('____________________')
+        env_map.append(get_coord(math.radians(angle), distance))
+        st.run_stepper(stepper_turn_multiplier, True)
+    # Reset stepper position
+    st.run_stepper(512, False)
     return env_map

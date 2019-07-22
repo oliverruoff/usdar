@@ -14,6 +14,16 @@ GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
 GPIO.setup(GPIO_ECHO, GPIO.IN)
 
 
+def get_reliable_distance(number_combined_measurements=5):
+    measurements = [get_distance() for dist in range(number_combined_measurements)]
+    avg_distance = sum(measurements) / len(measurements)
+    avg_deviations = [abs(avg_distance - dist) for dist in measurements]
+    avg_deviation = sum(avg_deviations) / len(avg_deviations)
+    filtered_distances = [measurements[i] for i in range(len(avg_deviations)) if avg_deviations[i] < avg_deviation ]
+    improved_avg_distance = sum(filtered_distances) / len(filtered_distances)
+    return improved_avg_distance
+
+
 def get_distance():
     """Triggers the ultra sonic sensor and measures the distance.
 
