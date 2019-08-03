@@ -23,7 +23,7 @@ def scan_360():
         print('X       :', get_coord(angle, distance)[0])
         print('Y       :', get_coord(angle, distance)[1])
         print('____________________')
-        env_map.append(get_coord(math.radians(angle), distance))
+        env_map.append(get_coord(angle, distance))
         st.run_stepper(stepper_turn_multiplier, True)
     # Reset stepper position
     st.run_stepper(512, False)
