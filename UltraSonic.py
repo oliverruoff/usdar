@@ -3,6 +3,7 @@ Holds functionality for the ultra sonic sensor.
 """
 import RPi.GPIO as GPIO
 import time
+import statistics
 
 # GPIO mode (BOARD / BCM)
 GPIO.setmode(GPIO.BCM)
@@ -27,8 +28,8 @@ def get_reliable_distance(number_combined_measurements=5):
 
 
 def get_median_distance(number_combined_measurements=5):
-    return median([get_distance() for dist
-                   in range(number_combined_measurements)])
+    return statistics.median([get_distance() for dist
+                              in range(number_combined_measurements)])
 
 
 def get_distance():
