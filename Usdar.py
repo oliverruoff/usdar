@@ -6,8 +6,10 @@ import UltraSonic as us
 
 
 def get_coord(angle, distance):
-    #print('>>>sin(', angle, '=', math.sin(angle), '*', distance, '=',math.sin(angle)*distance )
-    #print('>>>cos(', angle, '=', math.cos(angle), '*', distance, '=',math.cos(angle)*distance )
+    print('>>>sin(', angle, ') =', math.sin(angle),
+          '*', distance, '=', math.sin(angle)*distance)
+    print('>>>cos(', angle, ') =', math.cos(angle),
+          '*', distance, '=', math.cos(angle)*distance)
     return round(math.sin(angle)*distance), round(math.cos(angle)*distance)
 
 
