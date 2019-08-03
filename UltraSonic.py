@@ -56,4 +56,4 @@ def get_distance():
     # divide by 2 (since double distance)
     distance = (time_elapsed * 34300) / 2
 
-    return distance
+    return round(distance)
