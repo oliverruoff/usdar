@@ -8,8 +8,8 @@ import statistics
 # GPIO mode (BOARD / BCM)
 GPIO.setmode(GPIO.BCM)
 
-GPIO_TRIGGER = 23
-GPIO_ECHO = 24
+GPIO_TRIGGER = 17
+GPIO_ECHO = 4
 
 GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
 GPIO.setup(GPIO_ECHO, GPIO.IN)
