@@ -18,6 +18,7 @@ GPIO.setup(GPIO_ECHO, GPIO.IN)
 def spam_measurements():
     while True:
         print('Distance: {0}cm'.format(get_distance()))
+        time.sleep(0.5)
 
 
 def get_reliable_distance(number_combined_measurements=5):
