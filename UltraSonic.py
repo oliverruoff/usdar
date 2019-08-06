@@ -22,6 +22,14 @@ def spam_measurements():
 
 
 def get_reliable_distance(number_combined_measurements=5):
+    """Measures multiple times and tries to filter out outliers.
+
+    Keyword Arguments:
+        number_combined_measurements {int} -- The number of measurements. (default: {5})
+
+    Returns:
+        int -- Distance in cm.
+    """
     measurements = [get_distance()
                     for dist in range(number_combined_measurements)]
     avg_distance = sum(measurements) / len(measurements)
