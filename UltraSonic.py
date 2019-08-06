@@ -15,6 +15,11 @@ GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
 GPIO.setup(GPIO_ECHO, GPIO.IN)
 
 
+def spam_measurements():
+    while True:
+        print('Distance: {0}cm'.format(get_distance()))
+
+
 def get_reliable_distance(number_combined_measurements=5):
     measurements = [get_distance()
                     for dist in range(number_combined_measurements)]
@@ -28,6 +33,15 @@ def get_reliable_distance(number_combined_measurements=5):
 
 
 def get_median_distance(number_combined_measurements=5):
+    """Measures multiple times and takes the median value of the measurements.
+
+    Keyword Arguments:
+        number_combined_measurements {int} -- The number of measurements.
+        (default: {5})
+
+    Returns:
+        int -- Distance in cm.
+    """
     return statistics.median([get_distance() for dist
                               in range(number_combined_measurements)])
 
