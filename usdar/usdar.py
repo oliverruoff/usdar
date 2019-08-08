@@ -1,8 +1,8 @@
 import RPi.GPIO as GPIO
 import math
 
-import Stepper as st
-import UltraSonic as us
+import stepper as st
+import ultrasonic as us
 
 
 def get_coord(angle, distance):

@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 
-import Usdar as usdar
+import usdar as usdar
 
 # print(usdar.scan_360())
 
