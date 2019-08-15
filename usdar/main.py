@@ -1,8 +1,9 @@
 import RPi.GPIO as GPIO
 
-import usdar as usdar
+import detection as dt
+import stepper as st
 
-# print(usdar.scan_360())
-
-
-GPIO.cleanup()
+if __name__ == '__main__':
+    print(dt.scan_360())
+    st.run_stepper(512, False)
+    GPIO.cleanup()
