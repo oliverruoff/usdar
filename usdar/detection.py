@@ -16,7 +16,7 @@ def get_coord(angle, distance, log=False):
 
 def scan_360(stepper_turn_multiplier=2):
     env_map = []
-    for i in range((512/stepper_turn_multiplier)):
+    for i in range(int(512/stepper_turn_multiplier)):
         angle = 360/512*i*stepper_turn_multiplier
         distance = us.get_distance()
         radians_angle = math.radians(angle)
