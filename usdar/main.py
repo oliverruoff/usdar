@@ -1,9 +1,9 @@
 import RPi.GPIO as GPIO
 
-import detection as dt
-import stepper as st
+from .detection import scan_360
+from .stepper import run_stepper
 
 if __name__ == '__main__':
-    print(dt.scan_360(4))
-    st.run_stepper(512, False)
+    print(scan_360(4))
+    run_stepper(512, False)
     GPIO.cleanup()
