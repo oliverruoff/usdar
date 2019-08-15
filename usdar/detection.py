@@ -14,10 +14,9 @@ def get_coord(angle, distance, log=False):
     return round(math.sin(angle)*distance), round(math.cos(angle)*distance)
 
 
-def scan_360():
+def scan_360(stepper_turn_multiplier=2):
     env_map = []
-    stepper_turn_multiplier = 2
-    for i in range(256):
+    for i in range((512/stepper_turn_multiplier)):
         angle = 360/512*i*stepper_turn_multiplier
         distance = us.get_distance()
         radians_angle = math.radians(angle)
