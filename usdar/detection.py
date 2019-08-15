@@ -23,5 +23,5 @@ def scan_360(stepper_turn_multiplier=2, direction=True):
         distance = get_distance()
         radians_angle = math.radians(angle)
         env_map.append(get_coord(radians_angle, distance))
-        run_stepper(stepper_turn_multiplier, True)
+        run_stepper(stepper_turn_multiplier, direction)
     return env_map
